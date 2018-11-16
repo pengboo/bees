@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block css %}<link href="{% static 'css/login.css' %}" rel="stylesheet" />{% endblock %}
+
+
+{% block content %}
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <h2 class="ui teal image header">
+                <div class="content">欢迎登录</div>
+            </h2>
+            <form class="ui large form" action="/login/" method="post">
+                {% csrf_token %}
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                                <input type="text" name="username" placeholder="用户名" autofocus required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="密码" required>
+                        </div>
+                    </div>
+                    <button type="reset" class="ui teal submit button">重置</button>
+                    <button type="submit" class="ui teal submit button">提交</button>
+                </div>
+
+            </form>
+
+            <div class="ui message">
+                <p>
+                {% if message %}
+                    <div class="ui error message">{{ message }}</div>
+                {% endif %}
+                </p>
+                <p>没有账号? <a href="#">注册</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
