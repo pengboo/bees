@@ -12,22 +12,40 @@
             </h2>
             <form class="ui large form" action="/login/" method="post">
                 {% csrf_token %}
+
                 <div class="ui stacked segment">
                     <div class="field">
-                        <div class="ui left icon input">
+                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                                <input type="text" name="username" placeholder="用户名" autofocus required>
-                        </div>
+
+                                {{ login_form.username }}
+                         </div>
                     </div>
                     <div class="field">
-                        <div class="ui left icon input">
+                         <div class="ui left icon input">
                             <i class="lock icon"></i>
-                                <input type="password" name="password" placeholder="密码" required>
-                        </div>
+
+                                {{ login_form.password }}
+                         </div>
                     </div>
+
+                    <div class="field">
+                         <div class="ui left icon input">
+                             {{ login_form.captcha.errors}}
+                             {{ login_form.captcha.label_tag }}
+                             {{ login_form.captcha }}
+                         </div>
+                    </div>
+
+                    </div>
+
+
+
+
                     <button type="reset" class="ui teal submit button">重置</button>
                     <button type="submit" class="ui teal submit button">提交</button>
-                </div>
+
+
 
             </form>
 
