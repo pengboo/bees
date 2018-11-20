@@ -38,8 +38,8 @@ def login(request):
     return render(request, 'login/login.html', locals())
 
 def register(request):
-    pass
-    return render(request, 'login/register.html')
+    if request.session.get('is_login', None):
+        return redirect("/index/")
 
 def logout(request):
     if not request.session.get('is_login', None):
