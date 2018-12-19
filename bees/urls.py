@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from login import views
 from django.conf.urls import include
-
+from login.views import index, login, logout, register
+from news.views import column_detail, article_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index),
-    path('login/', views.login),
-    path('register/', views.register),
-    path('logout/', views.logout),
+    path('index/', index),
+    path('login/', login),
+    path('register/',register),
+    path('logout/', logout),
     path('captcha', include('captcha.urls')),
+    path('column/<slug:column_slug>/', column_detail),
+    path('article/<slug:article_slug>/', article_detail),
 
 ]
