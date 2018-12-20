@@ -18,11 +18,12 @@ class Column(models.Model):
         ordering = ['name']
 
 
+
 #文章
 class Article(models.Model):
     column = models.ManyToManyField(Column, verbose_name='归属栏目')
     title = models.CharField('标题', max_length=256)
-    slug = models.CharField('网址', max_length=256, db_index=True)
+    slug = models.CharField('网址', max_length=256, unique=True)
     author = models.ForeignKey(User, blank=True, null=True, verbose_name='作者', on_delete=models.CASCADE)
     content = models.TextField('内容', default='', blank=True)
     pub_date = models.DateTimeField('发表时间', auto_now_add=True, editable=True)
@@ -35,7 +36,3 @@ class Article(models.Model):
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = '文章'
-
-
-def get_absolute_url(self):
-    return reverse('article', args=(self.slug,))

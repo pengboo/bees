@@ -2,13 +2,14 @@
 {% block title %}栏目{% endblock %}
 {% block content %}
     <p>栏目名称：{{ column.name }}</p>
-    栏目简介：{{ column.intro }}
-    栏目文章列表：
+    <p>栏目简介：{{ column.intro }}</p>
+    <div>栏目文章列表：
     <ul>
         {% for article in column.article_set.all %}
             <li>
-                <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                <a> {{ article.title }}</a>
             </li>
         {% endfor %}
     </ul>
+    </div>
 {% endblock %}

@@ -20,7 +20,7 @@ from login.views import index, login, logout, register
 from news.views import column_detail, article_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', index),
+    path('', index),
     path('login/', login),
     path('register/',register),
     path('logout/', logout),
