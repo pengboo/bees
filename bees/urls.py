@@ -16,16 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from login.views import index, login, logout, register
-from news.views import column_detail, article_detail
+from login.views import login, logout, register
+from news.views import index, column_detail, article_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name='index'),
     path('login/', login),
     path('register/',register),
     path('logout/', logout),
     path('captcha', include('captcha.urls')),
-    path('column/<slug:column_slug>/', column_detail),
-    path('article/<slug:article_slug>/', article_detail),
+    path('column/<slug:column_slug>/', column_detail, name='column'),
+    path('article/<pk>/<article_slug>', article_detail, name='article'),
 
 ]

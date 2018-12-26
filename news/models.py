@@ -1,5 +1,6 @@
 from django.db import models
 from login.models import User
+from django.urls import  reverse
 
 # Create your models here.
 
@@ -11,6 +12,8 @@ class Column(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse('column',args=(self.slug,))
 
     class Meta:
         verbose_name = '栏目'
@@ -32,6 +35,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('article', args=(self.pk, self.slug))
 
     class Meta:
         verbose_name = '文章'

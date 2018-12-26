@@ -15,15 +15,15 @@
     {% block css %}{% endblock %}
 </head>
 <body>
-<div class="ui secondary pointing menu">
-    <a class="active item">
+<div class="ui secondary menu">
+    <a class="item" href="/">
         首页
     </a>
-    <a class="item">
-        Messages
+    <a class="item" href="/column/bee/">
+        蜜蜂智慧
     </a>
-    <a class="item">
-        Friends
+    <a class="item" href="/column/new/">
+        新闻动态
     </a>
     <div class="right menu">
         {% if request.session.is_login %}
