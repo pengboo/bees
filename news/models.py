@@ -1,6 +1,8 @@
 from django.db import models
 from login.models import User
-from django.urls import  reverse
+from django.urls import reverse
+from unidecode import unidecode
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -26,7 +28,7 @@ class Column(models.Model):
 class Article(models.Model):
     column = models.ManyToManyField(Column, verbose_name='归属栏目')
     title = models.CharField('标题', max_length=256)
-    slug = models.CharField('网址', max_length=256, unique=True)
+    slug = models.SlugField('slug', max_length=60, blank=True)
     author = models.ForeignKey(User, blank=True, null=True, verbose_name='作者', on_delete=models.CASCADE)
     content = models.TextField('内容', default='', blank=True)
     pub_date = models.DateTimeField('发表时间', auto_now_add=True, editable=True)
@@ -35,6 +37,13 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    #当id或slug为空时，利用unidecode对中文解码，利用slugify方法根据标题手动生成slug
+    def save(self, *args, **kwargs):
+        if not self.id or not self.slug:
+            self.slug = slugify(unidecode(self.title))
+
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('article', args=(self.pk, self.slug))
