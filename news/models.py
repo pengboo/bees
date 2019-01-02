@@ -30,6 +30,7 @@ class Article(models.Model):
     title = models.CharField('标题', max_length=256)
     slug = models.SlugField('slug', max_length=60, blank=True)
     author = models.ForeignKey(User, blank=True, null=True, verbose_name='作者', on_delete=models.CASCADE)
+    photo = models.URLField(blank=True)
     content = models.TextField('内容', default='', blank=True)
     pub_date = models.DateTimeField('发表时间', auto_now_add=True, editable=True)
     update_time = models.DateTimeField('更新时间', auto_now=True, null=True)
