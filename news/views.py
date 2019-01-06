@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from news.models import Column, Article
+from news.models import Column, Article, Img
 
 
 # Create your views here.
@@ -23,3 +23,16 @@ def article_detail(request, pk, article_slug):
     return render(request, 'news/article.html', {'article': article})
 
 
+def uploadImg(request):
+    if request.method == 'POST':
+        img = Img(img_url = request.FILES.get('img'))
+        img.save()
+    return render(request, 'news/imgUpload.html')
+
+def showImg(request):
+    imgs = Img.objects.all()
+    context = {
+        'imgs':imgs
+    }
+
+    return render(request, 'news/showImg.html', context)

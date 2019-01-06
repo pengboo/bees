@@ -3,6 +3,7 @@ from login.models import User
 from django.urls import reverse
 from unidecode import unidecode
 from django.template.defaultfilters import slugify
+from DjangoUeditor.models import UEditorField
 
 # Create your models here.
 
@@ -32,6 +33,9 @@ class Article(models.Model):
     author = models.ForeignKey(User, blank=True, null=True, verbose_name='作者', on_delete=models.CASCADE)
     photo = models.URLField(blank=True)
     content = models.TextField('内容', default='', blank=True)
+    #content = UEditorField('内容', height=300,width=1000,
+    #                       default=u'', blank=True, imagePath="images/",
+    #                       toolbars='besttome', filePath='files/')
     pub_date = models.DateTimeField('发表时间', auto_now_add=True, editable=True)
     update_time = models.DateTimeField('更新时间', auto_now=True, null=True)
     published = models.BooleanField('正式发布', default=True)
@@ -52,3 +56,7 @@ class Article(models.Model):
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = '文章'
+
+#上传图片
+class Img(models.Model):
+    img_url = models.ImageField(upload_to='images')
