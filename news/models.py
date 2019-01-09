@@ -31,7 +31,8 @@ class Article(models.Model):
     title = models.CharField('标题', max_length=256)
     slug = models.SlugField('slug', max_length=60, blank=True)
     author = models.ForeignKey(User, blank=True, null=True, verbose_name='作者', on_delete=models.CASCADE)
-    photo = models.URLField(blank=True)
+    #photo = models.URLField(blank=True)
+    photo = models.ImageField(upload_to='images')
     content = models.TextField('内容', default='', blank=True)
     #content = UEditorField('内容', height=300,width=1000,
     #                       default=u'', blank=True, imagePath="images/",

@@ -6,5 +6,12 @@
     <p>发布时间：{{ article.pub_date }}</p>
     <div>
         {{ article.content }}
+        <br>
+        {{ article.content|truncatewords:5 }}
     </div>
+    {% if article.photo %}
+        <img src="{{ article.photo.url }}" alt="">
+    {% else %}
+        无图片
+    {% endif %}
 {% endblock %}
