@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from DjangoUeditor import urls
 from login.views import login, logout, register
 from news.views import index, column_detail, article_detail, uploadImg, showImg
 from django.conf import settings
@@ -28,7 +27,6 @@ urlpatterns = [
     path('register/',register),
     path('logout/', logout),
     path('captcha', include('captcha.urls')),
-    path('ueditor', include('DjangoUeditor.urls')),
     path('column/<slug:column_slug>/', column_detail, name='column'),
     path('article/<pk>/<article_slug>', article_detail, name='article'),
     path('uploadImg/', uploadImg),

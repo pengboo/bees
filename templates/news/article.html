@@ -2,16 +2,39 @@
 {% block title %}{{ article.title }}{% endblock %}
 {% block content %}
 
-    <h1>文章标题：{{ article.title }}</h1>
-    <p>发布时间：{{ article.pub_date }}</p>
-    <div>
-        {{ article.content }}
-        <br>
-        {{ article.content|truncatewords:5 }}
+
+
+
+
+  <div class="ui borderless main menu">
+    <div class="ui text container">
+      <div class="header item">
+        <img class="logo" src="assets/images/logo.png">
+        梅花蜂场
+      </div>
+      <a class="active item" href="/">首页</a>
+      <a class="item" href="/column/bee/">蜜蜂智慧</a>
+      <a class="item" href="/column/new/">新闻动态</a>
+
     </div>
-    {% if article.photo %}
+  </div>
+ <div class="ui main text container">
+    <h1 class="ui header">{{ article.title }}</h1>
+    <p>This example shows how to use lazy loaded images, a sticky menu, and a simple text container</p>
+  </div>
+  <div class="ui text container">
+  {% if article.photo %}
         <img src="{{ article.photo.url }}" alt="">
     {% else %}
         无图片
     {% endif %}
+      <p>{{ article.content }}</p>
+  </div>
+
+    <div>
+
+
+        {{ article.content|truncatewords:5 }}
+    </div>
+
 {% endblock %}

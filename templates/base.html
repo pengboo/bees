@@ -9,35 +9,88 @@
      <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <script src="{% static 'semantic/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'semantic/semantic.min.js'%}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
 
     {% block css %}{% endblock %}
 </head>
 <body>
-<div class="ui secondary menu">
-    <a class="item" href="/">
-        首页
-    </a>
-    <a class="item" href="/column/bee/">
-        蜜蜂智慧
-    </a>
-    <a class="item" href="/column/new/">
-        新闻动态
-    </a>
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="active item" href="/">首页</a>
+    <a class="item" href="/column/bee/">蜜蜂智慧</a>
+    <a class="item" href="/column/new/">新闻动态</a>
     <div class="right menu">
-        {% if request.session.is_login %}
-            <a class="ui item">
-                当前在线：{{ request.session.user_name }}
-            </a>
+      {% if request.session.is_login %}
+        <div class="item">
+            <a class="ui item">当前在线：{{ request.session.user_name }}</a>
+        </div>
+        <div class="item">
             <a href="/logout/">登出</a>
-        {% else %}
+        </div>
+       {% else %}
+          <div class="item">
             <a href="/login/">登录</a>
+        </div>
+          <div class="item">
             <a href="/register/">注册</a>
+        </div>
         {% endif %}
     </div>
+  </div>
 </div>
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class="active item" href="/">首页</a>
+    <a class="item" href="/column/bee/">蜜蜂智慧</a>
+    <a class="item" href="/column/new/">新闻动态</a>
+
+    {% if request.session.is_login %}
+        <a class="item">当前在线：{{ request.session.user_name }}</a>
+        <a href="/logout/">登出</a>
+    {% else %}
+        <a class="item" href="/login/">登录</a>
+        <a class="item" href="/register/">注册</a>
+    {% endif %}
+</div>
+<div class="pusher">
 
 {% block content %}{% endblock %}
+
+</div>
+<!-- 页脚 -->
+<div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Sitemap</a>
+            <a href="#" class="item">Contact Us</a>
+            <a href="#" class="item">Religious Ceremonies</a>
+            <a href="#" class="item">Gazebo Plans</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Banana Pre-Order</a>
+            <a href="#" class="item">DNA FAQ</a>
+            <a href="#" class="item">How To Access</a>
+            <a href="#" class="item">Favorite X-Men</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
