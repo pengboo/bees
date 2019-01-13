@@ -6,6 +6,29 @@
     min-height: 700px;
     padding: 1em 0em;
 }
+
+
+.banner_area {
+  background: url("/static/images/banner.jpg") no-repeat scroll center center;
+  background-size: cover;
+  position: relative;
+  min-height: 200px;
+}
+
+.banner_area:before {
+  content: "";
+  background: rgba(4, 8, 29, 0.7);
+  position: absolute;
+  left: 0px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.masthead_page.segment {
+    min-height: 200px;
+    padding: 1em 0em;
+}
+
 .masthead .logo.item img {
     margin-right: 1em;
 }
@@ -22,6 +45,8 @@
     font-size: 1.7em;
     font-weight: normal;
 }
+
+
 
 .ui.vertical.stripe {
     padding: 8em 0em;

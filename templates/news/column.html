@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 {% block title %}栏目{% endblock %}
 {% block content %}
+    <!-- Page Contents -->
+    <div class="banner_area">
+    <div class="ui vertical masthead masthead_page center aligned segment">
+        <div class="ui container">
+            <div class="ui inverted large secondary pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                <a class="item" href="/">首页</a>
+                <a class="item" href="/column/bee/">蜜蜂智慧</a>
+                <a class="item" href="/column/new/">新闻动态</a>
+                <div class="right menu">
+                    {% if request.session.is_login %}
+                        <div class="item">
+                            <a class="ui item">当前在线：{{ request.session.user_name }}</a>
+                        </div>
+                        <div class="item">
+                            <a href="/logout/">登出</a>
+                        </div>
+                    {% else %}
+                        <div class="item">
+                            <a href="/login/">登录</a>
+                        </div>
+                        <div class="item">
+                            <a href="/register/">注册</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <p>栏目名称：{{ column.name }}</p>
     <p>栏目简介：{{ column.intro }}</p>
     <div>栏目文章列表：
@@ -12,4 +44,5 @@
         {% endfor %}
     </ul>
     </div>
+
 {% endblock %}

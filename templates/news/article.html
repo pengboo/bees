@@ -2,22 +2,38 @@
 {% block title %}{{ article.title }}{% endblock %}
 {% block content %}
 
-
-
-
-
-  <div class="ui borderless main menu">
-    <div class="ui text container">
-      <div class="header item">
-        <img class="logo" src="assets/images/logo.png">
-        梅花蜂场
-      </div>
-      <a class="active item" href="/">首页</a>
-      <a class="item" href="/column/bee/">蜜蜂智慧</a>
-      <a class="item" href="/column/new/">新闻动态</a>
-
+<div class="banner_area">
+    <div class="ui vertical masthead masthead_page center aligned segment">
+        <div class="ui container">
+            <div class="ui inverted large secondary pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                <a class="item" href="/">首页</a>
+                <a class="item" href="/column/bee/">蜜蜂智慧</a>
+                <a class="item" href="/column/new/">新闻动态</a>
+                <div class="right menu">
+                    {% if request.session.is_login %}
+                        <div class="item">
+                            <a class="ui item">当前在线：{{ request.session.user_name }}</a>
+                        </div>
+                        <div class="item">
+                            <a href="/logout/">登出</a>
+                        </div>
+                    {% else %}
+                        <div class="item">
+                            <a href="/login/">登录</a>
+                        </div>
+                        <div class="item">
+                            <a href="/register/">注册</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    </div>
+
  <div class="ui main text container">
     <h1 class="ui header">{{ article.title }}</h1>
     <p>This example shows how to use lazy loaded images, a sticky menu, and a simple text container</p>
@@ -31,10 +47,5 @@
       <p>{{ article.content }}</p>
   </div>
 
-    <div>
-
-
-        {{ article.content|truncatewords:5 }}
-    </div>
 
 {% endblock %}
