@@ -6,7 +6,15 @@ from news.models import Column, Article, Img
 # Create your views here.
 def index(request):
     columns = Column.objects.all()
-    return render(request, 'index.html', {'columns':columns})
+    article = Article.objects.all()
+    imgs = Img.objects.all()
+
+    context = {
+        'article': article,
+        'imgs': imgs
+    }
+
+    return render(request, 'index.html', context)
 
 def column_detail(request, column_slug):
     column = Column.objects.get(slug=column_slug)
@@ -31,8 +39,5 @@ def uploadImg(request):
 
 def showImg(request):
     imgs = Img.objects.all()
-    context = {
-        'imgs':imgs
-    }
 
-    return render(request, 'news/showImg.html', context)
+    return render(request, 'index.html', {'imgs' : imgs})
